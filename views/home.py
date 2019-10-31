@@ -1,14 +1,11 @@
-from iview import Iview
+from views.iview import Iview
 
 
 class HomeView(Iview):
     def renderbody(self, variables=dict()):
         body = ''
         if self.header != None:
-            body = '''
-            ${self.header}
-
-            '''
+            body = self.header
         body += '''
             1.- Login
             2.- Register

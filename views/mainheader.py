@@ -1,4 +1,4 @@
-from iview import Iview
+from views.iview import Iview
 
 
 class MainHeader(Iview):
@@ -6,15 +6,13 @@ class MainHeader(Iview):
         body = ''
 
         if self.header != None:
-            body = '''
-                ${self.header}
-            '''
+            body = self.header
 
         body += '''
         >>>>========== MITAP ==========<<<<
         ___________________________________  
-        '''   
-        return body 
+        '''
+        return body
 
     def rendernavigation(self, variables=dict()):
         pass
