@@ -5,18 +5,19 @@ from views.mainheader import MainHeader
 
 class HomeController(IController):
     def render(self):
+        result = None
+        valid_answers = {'1': 'controllers.loginuserncontroller',
+                         }
         header = MainHeader()
         body = HomeView(header.renderbody())
 
         print(body.renderbody())
         action = input(body.rendernavigation())
 
-        # Print temporal
-        print(f'Accion selecionada: {action}')
+        if action in valid_answers:
+            result = valid_answers[action]
 
-        # TODO Seleccionar navegación dependiendo de la accion
-
-        return None
+        return result
 
 
 controller = HomeController()

@@ -1,5 +1,3 @@
-import json
-
 # controlador por defecto. Es con el que iniciamos la primera pantalla que pintamos
 controller_path = 'controllers.homecontroller'
 
