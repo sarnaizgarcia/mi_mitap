@@ -1,3 +1,5 @@
+from getpass import getpass
+
 from controllers.icontroller import IController
 from views.mainheader import MainHeader
 from views.loginpswview import PswLogIn
@@ -9,7 +11,7 @@ class PswLogInController(IController):
         body = PswLogIn(header.renderbody())
 
         print(body.renderbody())
-        action = input(body.rendernavigation())
+        action = getpass(body.rendernavigation())
 
         return None
 
