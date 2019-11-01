@@ -5,6 +5,11 @@ from views.loginusernview import UserNameLogIn
 
 class UserNameLogInController(IController):
     def render(self):
+        result = None
+        valid_answer = {'S': None,
+                        'B': None
+                        }
+
         header = MainHeader()
         body = UserNameLogIn(header.renderbody())
 
@@ -14,7 +19,12 @@ class UserNameLogInController(IController):
 
         print(f'Acción seleccionada: {action}')
 
-        return None
+        if action in valid_answer:
+            result = valid_answer[action]
+        else:
+            result = 'controllers.loginpswviewcontroller'
+
+        return result
 
 
 controller = UserNameLogInController()
