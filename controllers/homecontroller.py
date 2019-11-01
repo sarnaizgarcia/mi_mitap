@@ -7,7 +7,8 @@ class HomeController(IController):
     def render(self):
         result = None
         valid_answers = {'1': 'controllers.loginuserncontroller',
-                         'S': None
+                         'S': None,
+                         '2': 'controllers.registercontroller'
                          }
         header = MainHeader()
         body = HomeView(header.renderbody())

@@ -1,30 +1,27 @@
 from controllers.icontroller import IController
 from views.mainheader import MainHeader
-from views.loginusernview import UserNameLogIn
+from views.userregisterview import UserRegister
 
 
-class UserNameLogInController(IController):
+class UserRegisterController(IController):
     def render(self):
         result = None
         valid_answer = {'S': None,
                         'B': None,
                         }
-
         header = MainHeader()
-        body = UserNameLogIn(header.renderbody())
+        body = UserRegister(header.renderbody())
 
-        print(body.renderbody())  # imprime el body y la cabecera
-        # esta acción marca la navegación
+        print(body.renderbody())
+
         action = input(body.rendernavigation())
 
         print(f'Acción seleccionada: {action}')
 
         if action in valid_answer:
             result = valid_answer[action]
-        else:
-            result = 'controllers.loginpswviewcontroller'
 
         return result
 
 
-controller = UserNameLogInController()
+controller = UserRegisterController()
