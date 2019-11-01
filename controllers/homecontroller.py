@@ -16,6 +16,8 @@ class HomeController(IController):
 
         if action in valid_answers:
             result = valid_answers[action]
+        else:
+            result = 'controllers.errorcontroller'
 
         return result
 
