@@ -1,20 +1,21 @@
 from views.iview import Iview
 
 
-class PswLogIn(Iview):
+class PswRegister(Iview):
     def renderbody(self, variables=dict()):
         body = ''
+
         if self.header != None:
             body = self.header
 
         body += '''
-        Login page\n
-        Usuario introducido: silvia
+        Página de registro\n
+        Usuario creado: silvia
         '''
 
         return body
 
-    def rendernavigation(self, variables=dict()):
+    def rendernavigation(self, variable=dict()):
         return '''
-        Introduce tu password (S para salir, B para volver):
+        Introduce tu password (S para salir, B para volver)\n
         '''

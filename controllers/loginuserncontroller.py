@@ -15,14 +15,14 @@ class UserNameLogInController(IController):
 
         print(body.renderbody())  # imprime el body y la cabecera
         # esta acción marca la navegación
-        action = input(body.rendernavigation())
+        action = input(body.rendernavigation()).upper()
 
         print(f'Acción seleccionada: {action}')
 
         if action in valid_answer:
             result = valid_answer[action]
         else:
-            result = 'controllers.loginpswviewcontroller'
+            result = 'controllers.loginpswcontroller'
 
         return result
 
