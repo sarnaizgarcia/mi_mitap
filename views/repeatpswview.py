@@ -17,5 +17,5 @@ class RepeatPsw(Iview):
 
     def rendernavigation(self, variable=dict()):
         return '''
-        Vuelve a introducir tu password (S para salir, B para volver)
+        Vuelve a introducir tu password (S para salir, B para volver):
         '''

@@ -17,5 +17,5 @@ class PswRegister(Iview):
 
     def rendernavigation(self, variable=dict()):
         return '''
-        Introduce tu password (S para salir, B para volver)\n
+        Introduce tu password (S para salir, B para volver):
         '''

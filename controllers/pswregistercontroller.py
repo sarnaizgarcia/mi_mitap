@@ -18,10 +18,10 @@ class PswRegisterController(IController):
         print(body.renderbody())
         action = getpass(body.rendernavigation())
 
-        # if action in valid_answer:
-        #     result = valid_answer[action]
-        # else:
-        #     result = 'controllers.loginpswcont
+        if action in valid_answer:
+            result = valid_answer[action]
+        else:
+            result = 'controllers.repeatpswviewcontroller'
 
         return result
 
