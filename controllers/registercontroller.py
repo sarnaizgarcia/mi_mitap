@@ -5,10 +5,8 @@ from views.userregisterview import UserRegister
 
 class UserRegisterController(IController):
     def render(self, breadcrumbs):
-        result = None
-        valid_answer = {'S': None,
-                        'B': 'back',
-                        }
+        result = 'controllers.pswregistercontroller'
+
         header = MainHeader()
         body = UserRegister(header.renderbody())
 
@@ -16,12 +14,14 @@ class UserRegisterController(IController):
 
         action = input(body.rendernavigation()).upper()
 
-        print(f'Acción seleccionada: {action}')
+        # print(f'Acción seleccionada: {action}')
 
-        if action in valid_answer:
-            result = valid_answer[action]
+        if action == 'B':
+            result = breadcrumbs.unstack_navigation()
+        elif action == 'S':
+            result = None
         else:
-            result = 'controllers.pswregistercontroller'
+            breadcrumbs.stack_navigation('controllers.registercontroller')
 
         return result
 

@@ -7,13 +7,22 @@ from views.mainheader import MainHeader
 
 class RepeatPswController(IController):
     def render(self, breadcrumbs):
+        result = None
+
         header = MainHeader()
         body = RepeatPsw(header.renderbody())
 
         print(body.renderbody())
         action = getpass(body.rendernavigation())
 
-        return None
+        if action == 'B' or action == 'b':
+            result = breadcrumbs.unstack_navigation()
+        elif action == 'S' or action == 's':
+            result = None
+        else:
+            breadcrumbs.stack_navigation('controllers.repeatpswcontroller')
+
+        return result
 
 
 controller = RepeatPswController()

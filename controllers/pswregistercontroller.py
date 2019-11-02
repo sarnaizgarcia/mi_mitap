@@ -7,21 +7,21 @@ from views.mainheader import MainHeader
 
 class PswRegisterController(IController):
     def render(self, breadcrumbs):
-        result = None
-        valid_answer = {'S': None,
-                        'B': 'back',
-                        }
+        result = 'controllers.repeatpswcontroller'
 
         header = MainHeader()
         body = PswRegister(header.renderbody())
 
         print(body.renderbody())
+
         action = getpass(body.rendernavigation())
 
-        if action in valid_answer:
-            result = valid_answer[action]
+        if action == 'B' or action == 'b':
+            result = breadcrumbs.unstack_navigation()
+        elif action == 'S' or action == 's':
+            result = None
         else:
-            result = 'controllers.repeatpswviewcontroller'
+            breadcrumbs.stack_navigation('controllers.pswregistercontroller')
 
         return result
 
