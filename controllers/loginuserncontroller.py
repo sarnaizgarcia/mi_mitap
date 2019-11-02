@@ -4,7 +4,7 @@ from views.loginusernview import UserNameLogIn
 
 
 class UserNameLogInController(IController):
-    def render(self, breadcrumbs):
+    def render(self, breadcrumbs, store):
         result = 'controllers.loginpswcontroller'
 
         header = MainHeader()
@@ -21,6 +21,7 @@ class UserNameLogInController(IController):
         elif action == 'S':
             result = None
         else:
+            store.add_item('user_name', action)
             breadcrumbs.stack_navigation(
                 'controllers.loginuserncontroller')
 

@@ -4,7 +4,7 @@ from views.mainheader import MainHeader
 
 
 class HomeController(IController):
-    def render(self, breadcrumbs):
+    def render(self, breadcrumbs, store):
         result = None
         valid_answers = {'1': 'controllers.loginuserncontroller',
                          '2': 'controllers.registercontroller',

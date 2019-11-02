@@ -4,7 +4,7 @@ from views.userregisterview import UserRegister
 
 
 class UserRegisterController(IController):
-    def render(self, breadcrumbs):
+    def render(self, breadcrumbs, store):
         result = 'controllers.pswregistercontroller'
 
         header = MainHeader()

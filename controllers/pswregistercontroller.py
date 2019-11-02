@@ -6,7 +6,7 @@ from views.mainheader import MainHeader
 
 
 class PswRegisterController(IController):
-    def render(self, breadcrumbs):
+    def render(self, breadcrumbs, store):
         result = 'controllers.repeatpswcontroller'
 
         header = MainHeader()

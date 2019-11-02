@@ -1,4 +1,5 @@
 from views.iview import Iview
+from string import Template
 
 
 class PswLogIn(Iview):
@@ -7,10 +8,10 @@ class PswLogIn(Iview):
         if self.header != None:
             body = self.header
 
-        body += '''
+        body += Template('''
         Login page\n
-        Usuario introducido: silvia
-        '''
+        Usuario introducido: $user_name
+        ''').substitute(variables)
 
         return body
 
