@@ -8,11 +8,11 @@ class Success(Iview):
         if self.header != None:
             body = self.header
 
-        body += '''
+        body += Template('''
         ¡Lo has conseguido!
         $titulo
         $mensaje
-        '''
+        ''').substitute(variables)
 
         if not 'titulo' in variables:
             variables.update(

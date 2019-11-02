@@ -12,16 +12,16 @@ class UserNameLogInController(IController):
 
         print(body.renderbody())  # imprime el body y la cabecera
         # esta acción marca la navegación
-        action = input(body.rendernavigation()).upper()
+        action = input(body.rendernavigation())
 
         # print(f'\tAcción seleccionada: {action}')
 
-        if action == 'B':
+        if action.upper() == 'B':
             result = breadcrumbs.unstack_navigation()
-        elif action == 'S':
+        elif action.upper() == 'S':
             result = None
         else:
-            store.add_item('user_name', action)
+            store.add_item('user_name', action)  # guarda el nombre del usuario
             breadcrumbs.stack_navigation(
                 'controllers.loginuserncontroller')
 

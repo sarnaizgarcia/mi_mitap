@@ -1,4 +1,5 @@
 from views.iview import Iview
+from string import Template
 
 
 class RepeatPsw(Iview):
@@ -8,10 +9,10 @@ class RepeatPsw(Iview):
         if self.header != None:
             body = self.header
 
-        body += '''
+        body += Template('''
         Página de registro\n
-        Usuario creado: silvia
-        '''
+        Usuario creado: $user_name
+        ''').substitute(variables)
 
         return body
 

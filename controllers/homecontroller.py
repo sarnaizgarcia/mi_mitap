@@ -14,9 +14,9 @@ class HomeController(IController):
         body = HomeView(header.renderbody())
 
         print(body.renderbody())
-        action = input(body.rendernavigation()).upper()
+        action = input(body.rendernavigation())
 
-        if action in valid_answers:
+        if action.upper() in valid_answers:
             result = valid_answers[action]
         else:
             result = 'controllers.errorcontroller'

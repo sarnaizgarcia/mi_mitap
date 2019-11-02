@@ -8,10 +8,12 @@ class SuccessController(IController):
         header = MainHeader()
         body = Success(header.renderbody())
 
-        if store.exist_item('éxito'):
-            print(body.renderbody(store.read_item('éxito')))
-        else:
-            print(body.renderbody())
+        variables = dict()
+
+        if store.exist_item('exito'):
+            variables = store.read_item('exito')
+
+        print(body.renderbody(variables))
 
         input(body.rendernavigation())
 

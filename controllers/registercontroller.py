@@ -12,15 +12,16 @@ class UserRegisterController(IController):
 
         print(body.renderbody())
 
-        action = input(body.rendernavigation()).upper()
+        action = input(body.rendernavigation())
 
         # print(f'Acción seleccionada: {action}')
 
-        if action == 'B':
+        if action.upper() == 'B':
             result = breadcrumbs.unstack_navigation()
-        elif action == 'S':
+        elif action.upper() == 'S':
             result = None
         else:
+            store.add_item('user_name', action)
             breadcrumbs.stack_navigation('controllers.registercontroller')
 
         return result
