@@ -4,7 +4,7 @@ from views.mainheader import MainHeader
 
 
 class ErrorController(IController):
-    def render(self):
+    def render(self, breadcrumbs):
         header = MainHeader()
         body = Error(header.renderbody())
 

@@ -4,10 +4,10 @@ from views.userregisterview import UserRegister
 
 
 class UserRegisterController(IController):
-    def render(self):
+    def render(self, breadcrumbs):
         result = None
         valid_answer = {'S': None,
-                        'B': None,
+                        'B': 'back',
                         }
         header = MainHeader()
         body = UserRegister(header.renderbody())

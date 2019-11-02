@@ -6,7 +6,7 @@ from views.mainheader import MainHeader
 
 
 class RepeatPswController(IController):
-    def render(self):
+    def render(self, breadcrumbs):
         header = MainHeader()
         body = RepeatPsw(header.renderbody())
 

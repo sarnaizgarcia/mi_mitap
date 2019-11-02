@@ -4,10 +4,9 @@ from views.loginusernview import UserNameLogIn
 
 
 class UserNameLogInController(IController):
-    def render(self):
+    def render(self, breadcrumbs):
         result = None
         valid_answer = {'S': None,
-                        'B': None,
                         }
 
         header = MainHeader()
@@ -19,10 +18,11 @@ class UserNameLogInController(IController):
 
         print(f'Acción seleccionada: {action}')
 
+        if action == 'B':
+            result = breadcrumbs.unstack_navigation()
         if action in valid_answer:
             result = valid_answer[action]
-        else:
-            result = 'controllers.loginpswcontroller'
+            breadcrumbs.stack_navigation('controllers.loginuserncontroller')
 
         return result
 

@@ -4,7 +4,7 @@ from views.mainheader import MainHeader
 
 
 class HomeController(IController):
-    def render(self):
+    def render(self, breadcrumbs):
         result = None
         valid_answers = {'1': 'controllers.loginuserncontroller',
                          '2': 'controllers.registercontroller',
@@ -20,6 +20,8 @@ class HomeController(IController):
             result = valid_answers[action]
         else:
             result = 'controllers.errorcontroller'
+
+        breadcrumbs.stack_navigation('controllers.homecontroller')
 
         return result
 

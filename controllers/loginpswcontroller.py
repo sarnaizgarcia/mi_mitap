@@ -6,7 +6,7 @@ from views.loginpswview import PswLogIn
 
 
 class PswLogInController(IController):
-    def render(self):
+    def render(self, breadcrumbs):
         header = MainHeader()
         body = PswLogIn(header.renderbody())
 
