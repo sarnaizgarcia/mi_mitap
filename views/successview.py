@@ -10,8 +10,8 @@ class Success(Iview):
 
         body += Template('''
         ¡Lo has conseguido!
-        $titulo
-        $mensaje
+        $title
+        $message
         ''').substitute(variables)
 
         if not 'titulo' in variables:
