@@ -3,15 +3,25 @@ from getpass import getpass
 from views.pswregisterview import PswRegister
 from controllers.icontroller import IController
 from views.mainheader import MainHeader
+from facade.pswregisterfacade import register_psw_facade
 
 
 class PswRegisterController(IController):
+    def _navigate(self, breadcrumbs, store, password):
+        result = ''
+        if register_psw_facade.validate_pswregister(password):
+            store.add_item('password', password)
+            result = 'controllers.repeatpswcontroller'
+        else:
+            store.add_item('error', {
+                           'titulo': 'Fallo en la validación del password', 'mensaje': 'El password debe tener al menos 8 caracteres'})
+            result = 'controllers.errorcontroller'
+
+        breadcrumbs.stack_navigation('controllers.pswregistercontroller')
+        return result
+
     def render(self, breadcrumbs, store):
         result = 'controllers.repeatpswcontroller'
-
-        if not store.exist_item('user_name'):
-            store.add_item('error', {'title': 'Usuario incorrecto',
-                                     'message': 'No se ha encontrado el nombre de usuario'})
 
         user_name = store.read_item('user_name')
         header = MainHeader()
@@ -26,8 +36,7 @@ class PswRegisterController(IController):
         elif action.upper() == 'S':
             result = None
         else:
-            breadcrumbs.stack_navigation('controllers.pswregistercontroller')
-            store.add_item('user_password', action)
+            result = self._navigate(breadcrumbs, store, action)
 
         return result
 

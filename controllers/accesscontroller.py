@@ -10,9 +10,9 @@ class AccessController(IController):
         # si no hay una sesión creada usuario o password han fallado
         if not store.exist_item('session_data'):
             store.add_item('error', {  # los errores se pisa, no se puede estar a la vez en varias páginas
-                           'title': 'Acceso denegado',
-                           'message': 'No tiene permisos para poder acceder a esta vista'})
-            return 'controller.errorcontroller'
+                           'titulo': 'Acceso denegado',
+                           'mensaje': 'No tiene permisos para poder acceder a esta vista'})
+            return 'controllers.errorcontroller'
 
         session_data = store.read_item('session_data')
         header = MainHeader()

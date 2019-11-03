@@ -3,16 +3,26 @@ from getpass import getpass
 from controllers.icontroller import IController
 from views.mainheader import MainHeader
 from views.loginpswview import PswLogIn
+from facade.pswloginfacade import login_psw_facade
 
 
 class PswLogInController(IController):
+    def _navigate(self, breadcrumbs, store, password):
+        result = ''
+        if login_psw_facade.validate_loginpsw(password):
+            store.add_item('session_data', {
+                           'user_name': store.read_item('user_name')})
+            result = 'controllers.accesscontroller'
+        else:
+            store.add_item('error', {
+                           'titulo': 'Fallo en la validación del password', 'mensaje': 'El password es obligatorio'})
+            result = 'controllers.errorcontroller'
+
+        breadcrumbs.stack_navigation('controllers.loginpswcontroller')
+        return result
+
     def render(self, breadcrumbs, store):
         result = 'controllers.accesscontroller'
-
-        if not store.exist_item('user_name'):
-            store.add_item('error', {'title': 'Usuario no introducido',
-                                     'message': 'No se ha encontrado nombre de usuario en la sessión'})
-            return 'controllers.errorcontroller'
 
         user_name = store.read_item('user_name')
         header = MainHeader()
@@ -27,8 +37,7 @@ class PswLogInController(IController):
         elif action.upper() == 'S':
             result = None
         else:
-            breadcrumbs.stack_navigation('controllers.loginpswcontroller')
-            store.add_item('session_data', {'user_name': user_name})
+            result = self._navigate(breadcrumbs, store, action)
 
         return result
 

@@ -9,7 +9,7 @@ class UserNameLogInController(IController):
         result = ''
         if user_name_facade.validate_username(user_name):
             # guarda el nombre del usuario
-            store.add_item('user_name', action)
+            store.add_item('user_name', user_name)
             result = 'controllers.loginpswcontroller'
         else:
             store.add_item('error', {

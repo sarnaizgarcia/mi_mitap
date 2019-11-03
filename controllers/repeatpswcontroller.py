@@ -3,17 +3,27 @@ from getpass import getpass
 from views.repeatpswview import RepeatPsw
 from controllers.icontroller import IController
 from views.mainheader import MainHeader
+from facade.comparepswfacade import compare_psw
 
 
 class RepeatPswController(IController):
+    def _navigate(self, breadcrumbs, store, password, rep_password):
+        result = ''
+        if compare_psw.validate_secondpsw(password, rep_password):
+            store.add_item('rep_password', rep_password)
+            result = 'controllers.successcontroller'
+        else:
+            store.add_item('error', {
+                           'titulo': 'Fallo en la validación del password', 'mensaje': 'Los passwords deben ser iguales'})
+            result = 'controllers.errorcontroller'
+
+        breadcrumbs.stack_navigation('controllers.repeatpswcontroller')
+        return result
+
     def render(self, breadcrumbs, store):
-        result = None
+        result = 'controllers.successcontroller'
 
-        if not store.exist_item('user_name') and not store.exist_item('user_password'):
-            store.add_item('error', {'title': 'Acceso denegado',
-                                     'message': 'No se puede acceder a la validación sin usuario y password'})
-            return 'controllers.errorcontrollers'
-
+        user_name = store.read_item('user_name')
         header = MainHeader()
         body = RepeatPsw(header.renderbody())
         variables = {'user_name': store.read_item('user_name')}
@@ -21,15 +31,14 @@ class RepeatPswController(IController):
         print(body.renderbody(variables))
         action = getpass(body.rendernavigation())
 
+        password = store.read_item('password')
+
         if action.upper() == 'B':
             result = breadcrumbs.unstack_navigation()
         elif action.upper() == 'S':
             result = None
         else:
-            breadcrumbs.stack_navigation('controllers.repeatpswcontroller')
-            store.add_item('exito', {'title': 'Registro completado',
-                                     'message': 'Te has registrado con exito'})
-            result = 'controllers.successcontroller'
+            result = self._navigate(breadcrumbs, store, password, action)
 
         return result
 
