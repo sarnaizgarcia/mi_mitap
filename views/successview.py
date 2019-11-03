@@ -8,18 +8,18 @@ class Success(Iview):
         if self.header != None:
             body = self.header
 
+        if not 'title' in variables:
+            variables.update(
+                {'title': 'te mereces una palmadita en la espalda'})
+
+        if not 'message' in variables:
+            variables.update({'message': 'clap, clap, clap'})
+
         body += Template('''
         ¡Lo has conseguido!
         $title
         $message
         ''').substitute(variables)
-
-        if not 'titulo' in variables:
-            variables.update(
-                {'titulo': 'te mereces una palmadita en la espalda'})
-
-        if not 'mensaje' in variables:
-            variables.update({'mensaje': 'clap, clap, clap'})
 
         return Template(body).substitute(variables)
 
